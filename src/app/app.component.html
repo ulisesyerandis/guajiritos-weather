@@ -58,3 +58,15 @@
 <label class="primary">wind.gust: {{weatherInterface.wind.gust }}</label>
 <br />
 <label class="primary">wind.speed: {{weatherInterface.wind.speed }}</label>
+
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="latitud">Latitud:</label>
+    <input type="text" id="latitud" name="latitud" [(ngModel)]="latitud" required>
+  </div>
+  <div>
+    <label for="longitud">Longitud:</label>
+    <input type="text" id="longitud" name="longitud" [(ngModel)]="longitud" required>
+  </div>
+  <button type="submit">Enviar</button>
+</form>
