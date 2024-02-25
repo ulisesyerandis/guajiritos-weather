@@ -55,7 +55,7 @@
     </div>
     <div class="data_container">
       <div class="value_data_container">{{ weatherInterface.name }}  -  {{ weatherInterface.sys.country }}</div>
-      <div class="value_data_container">{{ weatherInterface.main.temp }}</div>
+      <div class="value_data_container">{{ weatherInterface.main.temp.toFixed(1) }}°c</div>
       <div class="value_data_container">{{ weatherInterface.main.humidity }}</div>
       <div class="value_data_container"></div>
     </div>

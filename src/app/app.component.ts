@@ -35,9 +35,7 @@ export class AppComponent implements OnInit
 constructor(private weatherService: weatherService)
 {}
   ngOnInit(): void 
-  {
-    
-  }
+  { }
 
 
 onCoordSubmit() 
@@ -66,12 +64,17 @@ onCityIdSubmit()
   this.getWeatherByCityId(this.city_id);
 }
 
+onZipSubmit() 
+{
+  this.getWeatherByZip(this.zip_code, this.country_code);  
+}
+
 public getWeatherByCoord(lat: string, lon: string): Weather
 {
   this.weatherService.getWeatherByCoord(lat, lon).subscribe({
     next: (response: any) => {
       this.weatherInterface = response;
-      console.log('coord by latitud and longitud = '+this.weatherInterface.name)
+      this.convertKelvinToCelsius(this.weatherInterface);
     },
     error: (error: any) =>{
 
@@ -88,17 +91,14 @@ public getWeatherByCoord(lat: string, lon: string): Weather
   return this.weatherInterface;
 }
 
-onZipSubmit() 
-{
-  this.getWeatherByZip(this.zip_code, this.country_code);  
-}
-
 public getWeatherByCity(city: string): Weather
 {
   this.weatherService.getWeatherByCity(city).subscribe({
     next: (response: any) =>{
       this.weatherInterface = response;
-      console.log('city: ' + this.weatherInterface.name);
+      console.log('temp = '+this.weatherInterface.main.temp)
+      this.convertKelvinToCelsius(this.weatherInterface);
+      console.log('temp = '+this.weatherInterface.main.temp)
     },
     error: (error: any)=>{
       Swal.fire({
@@ -119,7 +119,7 @@ public getWeatherByCityCountry(city: string, country: string): Weather
   this.weatherService.getWeatherByCityCountry(city, country).subscribe({
   next: (response: any) =>{
     this.weatherInterface = response;
-    console.log('city - country: ' + this.weatherInterface.name);
+    this.convertKelvinToCelsius(this.weatherInterface);
   },
   error: (error: any)=> {
     Swal.fire({
@@ -140,7 +140,7 @@ public getWeatherByCityCountryState(city: string, country: string, state: string
   this.weatherService.getWeatherByCityCountryState(city, country, state).subscribe({
   next: (response: any) =>{
     this.weatherInterface = response;
-    console.log('city - country - state: ' + this.weatherInterface.name);
+    this.convertKelvinToCelsius(this.weatherInterface);
   },
   error: (error: any)=> {
     Swal.fire({
@@ -161,7 +161,7 @@ public getWeatherByCityId(id: string): Weather
   this.weatherService.getWeatherByCityId(id).subscribe({
   next: (response: any) =>{
     this.weatherInterface = response;
-    console.log('city id: ' + this.weatherInterface.name);
+    this.convertKelvinToCelsius(this.weatherInterface);
   },
   error: (error: any)=> {
     Swal.fire({
@@ -182,7 +182,7 @@ public getWeatherByZip(zip: string, country: string): Weather
   this.weatherService.getWeatherByZip(zip, country).subscribe({
   next: (response: any) =>{
     this.weatherInterface = response;
-    console.log('zip - country: ' + this.weatherInterface.name);
+    this.convertKelvinToCelsius(this.weatherInterface);
   },
   error: (error: any)=> {
     Swal.fire({
@@ -198,21 +198,8 @@ public getWeatherByZip(zip: string, country: string): Weather
 return this.weatherInterface;
 }
 
-
+public convertKelvinToCelsius(weather: Weather): void 
+{
+  weather.main.temp = this.weatherService.convertKelvinToCelsius(weather.main.temp);
 }
-
-
-// public FillStudentData(): void
-// {
-//   this.studentListService.getAllStudent().subscribe({
-//       next: (response: any) => {
-//           this.studentList = response;
-//           console.log("Hello world");
-//           this.dataSource = this.studentList;
-//       },
-//       error: (error: any) => {   
-//           // console.log(error)
-//       },
-//   });
-//   // --console.log(this.studentList + ' cant');
-// }
+}

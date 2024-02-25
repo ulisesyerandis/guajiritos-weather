@@ -41,4 +41,12 @@ export default class WeatherServiceService
     return this.http.get('https://api.openweathermap.org/data/2.5/weather?zip=' + zip + ',' + country + '&appid=' + environment.apiKey);
   }
 
+  public FahrenheiToGC(tempFahrenheit: number): number {
+    return (tempFahrenheit - 32)* 5 / 9;
+  }
+
+  public convertKelvinToCelsius(tempKelvin: number): number {
+    return tempKelvin - 273.15;
+  }
+
 }
