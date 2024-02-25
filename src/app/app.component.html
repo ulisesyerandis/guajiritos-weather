@@ -1,65 +1,6 @@
-<!-- <button (click)="getWeather()" class="primary"> show</button> -->
-<label class="primary">base: {{weatherInterface.base }}</label>
-<br />
-<label class="primary">clouds: {{weatherInterface.clouds.all }}</label>
-<br />
-<label class="primary">cod: {{weatherInterface.cod }}</label>
-<br />
-<label class="primary">coord-lat: {{weatherInterface.coord.lat }}</label>
-<br />
-<label class="primary">coord-long{{weatherInterface.coord.lon }}</label>
-<br />
-<label class="primary">dt: {{weatherInterface.dt }}</label>
-<br />
-<label class="primary">id: {{weatherInterface.id }}</label>
-<br />
-<label class="primary">main.feels_like: {{weatherInterface.main.feels_like }}</label>
-<br />
-<label class="primary">main.grnd_level: {{weatherInterface.main.grnd_level }}</label>
-<br />
-<label class="primary">main.humidity: {{weatherInterface.main.humidity }}</label>
-<br />
-<label class="primary">main.pressure: {{weatherInterface.main.pressure }}</label>
-<br />
-<label class="primary">main.sea_level: {{weatherInterface.main.sea_level }}</label>
-<br />
-<label class="primary">main.temp: {{weatherInterface.main.temp }}</label>
-<br />
-<label class="primary">main.temp_max: {{weatherInterface.main.temp_max }}</label>
-<br />
-<label class="primary">main.temp_min: {{weatherInterface.main.temp_min }}</label>
-<br />
-<label class="primary">name: {{weatherInterface.name }}</label>
-<br />
-<label class="primary">sys.country: {{weatherInterface.sys.country }}</label>
-<br />
-<label class="primary">sys.id: {{weatherInterface.sys.id }}</label>
-<br />
-<label class="primary">sys.sunrise: {{weatherInterface.sys.sunrise }}</label>
-<br />
-<label class="primary">sys.sunset: {{weatherInterface.sys.sunset }}</label>
-<br />
-<label class="primary">sys.type: {{weatherInterface.sys.type }}</label>
-<br />
-<label class="primary">timezone: {{weatherInterface.timezone }}</label>
-<br />
-<label class="primary">visibility: {{weatherInterface.visibility }}</label>
-<br />
-<label class="primary">{{weatherInterface.weather.at(0)?.id }}</label>
-<br />
-<label class="primary">{{weatherInterface.weather.at(0)?.main }}</label>
-<br />
-<label class="primary">{{weatherInterface.weather.at(0)?.icon }}</label>
-<br />
-<label class="primary">{{weatherInterface.weather.at(0)?.description }}</label>
-<br />
-<label class="primary">wind.deg: {{weatherInterface.wind.deg }}</label>
-<br />
-<label class="primary">wind.gust: {{weatherInterface.wind.gust }}</label>
-<br />
-<label class="primary">wind.speed: {{weatherInterface.wind.speed }}</label>
+
       <!-- coordinates -->
-<form (ngSubmit)="onCoordSubmit()">
+<!-- <form (ngSubmit)="onCoordSubmit()">
   <div>
     <label for="latitud">Latitud:</label>
     <input type="text" id="latitud" name="latitud" [(ngModel)]="latitud" required>
@@ -69,7 +10,7 @@
     <input type="text" id="longitud" name="longitud" [(ngModel)]="longitud" required>
   </div>
   <button type="submit">Acept</button>
-</form>
+</form> -->
         <!-- city - country - state -->
 <form (ngSubmit)="onLocationByCitySubmit()">
   <div>
@@ -87,15 +28,15 @@
   <button type="submit">Acept</button>
 </form>
       <!-- city id -->
-      <form (ngSubmit)="onCityIdSubmit()">
+      <!-- <form (ngSubmit)="onCityIdSubmit()">
         <div>
           <label for="latitud">City id:</label>
           <input type="text" id="city_id" name="city_id" [(ngModel)]="city_id" required>
         </div>
         <button type="submit">Acept</button>
-      </form>
+      </form> -->
 <!-- zip - country -->
-<form (ngSubmit)="onZipSubmit()">
+<!-- <form (ngSubmit)="onZipSubmit()">
   <div>
     <label for="latitud">Zip code:</label>
     <input type="text" id="zip_code" name="zip_code" [(ngModel)]="zip_code" required>
@@ -105,5 +46,18 @@
     <input type="text" id="country_code" name="country_code" [(ngModel)]="country_code" >
   </div>
   <button type="submit">Acept</button>
-</form>
+</form> -->
 
+<div class="container">
+  <div class="weather_container">
+    <div class="img_container">
+      <img src="assets\img\sun.svg" alt="">
+    </div>
+    <div class="data_container">
+      <div class="value_data_container">{{ weatherInterface.name }}  -  {{ weatherInterface.sys.country }}</div>
+      <div class="value_data_container">{{ weatherInterface.main.temp }}</div>
+      <div class="value_data_container">{{ weatherInterface.main.humidity }}</div>
+      <div class="value_data_container"></div>
+    </div>
+  </div>
+</div>

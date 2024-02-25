@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import  weatherService  from './Services/weather-service.service';
 import { Weather } from './interface/weather';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +23,8 @@ export class AppComponent implements OnInit
   title = 'guajiritos-weather';
   weatherInterface!: Weather;
 
-  latitud: number = 0;
-  longitud: number = 0;
+  latitud: string ='';
+  longitud: string = '';
 
   city_name: string = '';
   country_code: string = '';
@@ -35,22 +36,9 @@ constructor(private weatherService: weatherService)
 {}
   ngOnInit(): void 
   {
-    this.getWeather();
+    
   }
 
-public getWeather(): Weather
-{
-  this.weatherService.getWeather().subscribe({
-    next: (response: any) => {
-      this.weatherInterface = response;
-      console.log(this.weatherInterface)
-    },
-    error: (error: any) =>{
-      console.log('error ')
-    },
-  });
-  return this.weatherInterface;
-}
 
 onCoordSubmit() 
 {
@@ -78,7 +66,7 @@ onCityIdSubmit()
   this.getWeatherByCityId(this.city_id);
 }
 
-public getWeatherByCoord(lat: number, lon: number): Weather
+public getWeatherByCoord(lat: string, lon: string): Weather
 {
   this.weatherService.getWeatherByCoord(lat, lon).subscribe({
     next: (response: any) => {
@@ -86,7 +74,15 @@ public getWeatherByCoord(lat: number, lon: number): Weather
       console.log('coord by latitud and longitud = '+this.weatherInterface.name)
     },
     error: (error: any) =>{
-      console.log('error showing data weather ');
+
+      Swal.fire({
+        title: "Coordinates not found",
+        text: "",
+        icon: "error"
+      }).then((result)=>{
+        console.log('Coordinates not found ');
+      window.location.reload();
+      });      
     },
   });
   return this.weatherInterface;
@@ -105,7 +101,14 @@ public getWeatherByCity(city: string): Weather
       console.log('city: ' + this.weatherInterface.name);
     },
     error: (error: any)=>{
-      console.log('error showing city');
+      Swal.fire({
+        title: "City not found",
+        text: "",
+        icon: "error"
+      }).then((result)=>{
+        console.log('City not found ');
+      window.location.reload();
+      });
     },
   });
   return this.weatherInterface
@@ -119,7 +122,14 @@ public getWeatherByCityCountry(city: string, country: string): Weather
     console.log('city - country: ' + this.weatherInterface.name);
   },
   error: (error: any)=> {
-    console.log('error showing sity - country');
+    Swal.fire({
+      title: "City not found",
+      text: "",
+      icon: "error"
+    }).then((result)=>{
+      console.log('City not found ');
+    window.location.reload();
+    });
   },
 });
 return this.weatherInterface;
@@ -133,7 +143,14 @@ public getWeatherByCityCountryState(city: string, country: string, state: string
     console.log('city - country - state: ' + this.weatherInterface.name);
   },
   error: (error: any)=> {
-    console.log('error showing city - country - state');
+    Swal.fire({
+      title: "City not found",
+      text: "",
+      icon: "error"
+    }).then((result)=>{
+      console.log('City not found ');
+    window.location.reload();
+    });
   },
 });
 return this.weatherInterface;
@@ -147,7 +164,14 @@ public getWeatherByCityId(id: string): Weather
     console.log('city id: ' + this.weatherInterface.name);
   },
   error: (error: any)=> {
-    console.log('error showing city id');
+    Swal.fire({
+      title: "City not found",
+      text: "",
+      icon: "error"
+    }).then((result)=>{
+      console.log('City not found ');
+    window.location.reload();
+    });
   },
 });
 return this.weatherInterface;
@@ -161,7 +185,14 @@ public getWeatherByZip(zip: string, country: string): Weather
     console.log('zip - country: ' + this.weatherInterface.name);
   },
   error: (error: any)=> {
-    console.log('error showing zip - country');
+    Swal.fire({
+      title: "Zip not found",
+      text: "",
+      icon: "error"
+    }).then((result)=>{
+      console.log('Zip not found ');
+    window.location.reload();
+    });
   },
 });
 return this.weatherInterface;

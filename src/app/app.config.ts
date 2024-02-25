@@ -4,12 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { routes } from './app.routes';
 import  WeatherServiceService  from './Services/weather-service.service';
 import { FormsModule } from '@angular/forms';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: 
   [
     provideRouter(routes),
     importProvidersFrom(HttpClientModule, FormsModule),
-    WeatherServiceService,
+    WeatherServiceService, provideAnimationsAsync(),
   ]
 };
