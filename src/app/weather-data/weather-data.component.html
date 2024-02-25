@@ -1,0 +1,33 @@
+ <!-- coordinates -->
+<form (ngSubmit)="onCoordSubmit()">
+  <div>
+    <label for="latitud">Latitud:</label>
+    <input type="text" id="latitud" name="latitud" [(ngModel)]="latitud" required>
+  </div>
+  <div>
+    <label for="longitud">Longitud:</label>
+    <input type="text" id="longitud" name="longitud" [(ngModel)]="longitud" required>
+  </div>
+  <button type="submit">Acept</button>
+</form>
+      <!-- city id -->
+      <form (ngSubmit)="onCityIdSubmit()">
+        <div>
+          <label for="latitud">City id:</label>
+          <input type="text" id="city_id" name="city_id" [(ngModel)]="city_id" required>
+        </div>
+        <button type="submit">Acept</button>
+      </form>
+<!-- zip - country -->
+<form (ngSubmit)="onZipSubmit()">
+  <div>
+    <label for="latitud">Zip code:</label>
+    <input type="text" id="zip_code" name="zip_code" [(ngModel)]="zip_code" required>
+  </div>
+  <div>
+    <label for="country_code">Country code:</label>
+    <input type="text" id="country_code" name="country_code" [(ngModel)]="country_code" >
+  </div>
+  <button type="submit">Acept</button>
+</form>
+

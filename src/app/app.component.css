@@ -1,24 +1,9 @@
-/* Component 1 */
-
-/* box-sizing: border-box;
-
-position: absolute;
-width: 1343.66px;
-height: 598.66px;
-left: 835px;
-top: 548px;
-
-background: linear-gradient(116.46deg, rgba(255, 255, 255, 0.4) 14.63%, rgba(255, 255, 255, 0.1) 68.61%, rgba(217, 217, 217, 0) 68.61%);
-box-shadow: 0px 4px 24px -1px rgba(0, 0, 0, 0.25);
-backdrop-filter: blur(20px);
-
-border-radius: 15px; */
 
 .container
 {
 position: relative;
-width: 900px;
-height: 500px;
+width: 100%;
+height: 100vh;
 background: linear-gradient(63.82deg, #05159E 0%, #D7FDFF 125.57%, #84D3FF 125.58%);
 border-radius: 6px;
 
@@ -123,7 +108,7 @@ color: white;
     cursor: pointer;
   }
   
-  .search-button i {
-    font-size: 20px;
+  .search-button:hover {
+    background-color: #0862c2; 
   }
   
