@@ -5,13 +5,12 @@ import  weatherService  from './Services/weather-service.service';
 import { Weather } from './interface/weather';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: 
   [
-    CommonModule, RouterOutlet, FormsModule,
+    CommonModule, RouterOutlet, FormsModule, 
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -22,6 +21,7 @@ export class AppComponent implements OnInit
 
   title = 'guajiritos-weather';
   weatherInterface!: Weather;
+  show: boolean = false;
 
   latitud: string ='';
   longitud: string = '';
@@ -75,6 +75,7 @@ public getWeatherByCoord(lat: string, lon: string): Weather
     next: (response: any) => {
       this.weatherInterface = response;
       this.convertKelvinToCelsius(this.weatherInterface);
+      this.show = true;
     },
     error: (error: any) =>{
 
@@ -83,7 +84,6 @@ public getWeatherByCoord(lat: string, lon: string): Weather
         text: "",
         icon: "error"
       }).then((result)=>{
-        console.log('Coordinates not found ');
       window.location.reload();
       });      
     },
@@ -96,9 +96,8 @@ public getWeatherByCity(city: string): Weather
   this.weatherService.getWeatherByCity(city).subscribe({
     next: (response: any) =>{
       this.weatherInterface = response;
-      console.log('temp = '+this.weatherInterface.main.temp)
       this.convertKelvinToCelsius(this.weatherInterface);
-      console.log('temp = '+this.weatherInterface.main.temp)
+      this.show = true;     
     },
     error: (error: any)=>{
       Swal.fire({
@@ -106,7 +105,6 @@ public getWeatherByCity(city: string): Weather
         text: "",
         icon: "error"
       }).then((result)=>{
-        console.log('City not found ');
       window.location.reload();
       });
     },
@@ -120,6 +118,7 @@ public getWeatherByCityCountry(city: string, country: string): Weather
   next: (response: any) =>{
     this.weatherInterface = response;
     this.convertKelvinToCelsius(this.weatherInterface);
+    this.show = true;
   },
   error: (error: any)=> {
     Swal.fire({
@@ -127,7 +126,6 @@ public getWeatherByCityCountry(city: string, country: string): Weather
       text: "",
       icon: "error"
     }).then((result)=>{
-      console.log('City not found ');
     window.location.reload();
     });
   },
@@ -141,6 +139,7 @@ public getWeatherByCityCountryState(city: string, country: string, state: string
   next: (response: any) =>{
     this.weatherInterface = response;
     this.convertKelvinToCelsius(this.weatherInterface);
+    this.show = true;
   },
   error: (error: any)=> {
     Swal.fire({
@@ -148,7 +147,6 @@ public getWeatherByCityCountryState(city: string, country: string, state: string
       text: "",
       icon: "error"
     }).then((result)=>{
-      console.log('City not found ');
     window.location.reload();
     });
   },
@@ -162,6 +160,7 @@ public getWeatherByCityId(id: string): Weather
   next: (response: any) =>{
     this.weatherInterface = response;
     this.convertKelvinToCelsius(this.weatherInterface);
+    this.show = true;
   },
   error: (error: any)=> {
     Swal.fire({
@@ -169,7 +168,6 @@ public getWeatherByCityId(id: string): Weather
       text: "",
       icon: "error"
     }).then((result)=>{
-      console.log('City not found ');
     window.location.reload();
     });
   },
@@ -183,6 +181,7 @@ public getWeatherByZip(zip: string, country: string): Weather
   next: (response: any) =>{
     this.weatherInterface = response;
     this.convertKelvinToCelsius(this.weatherInterface);
+    this.show = true;
   },
   error: (error: any)=> {
     Swal.fire({
@@ -190,7 +189,6 @@ public getWeatherByZip(zip: string, country: string): Weather
       text: "",
       icon: "error"
     }).then((result)=>{
-      console.log('Zip not found ');
     window.location.reload();
     });
   },
