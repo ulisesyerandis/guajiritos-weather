@@ -5,12 +5,14 @@ import  weatherService  from './Services/weather-service.service';
 import { Weather } from './interface/weather';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { WeatherDataComponent } from './weather-data/weather-data.component';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: 
   [
-    CommonModule, RouterOutlet, FormsModule, 
+    CommonModule, RouterOutlet, FormsModule,
+    WeatherDataComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -22,6 +24,7 @@ export class AppComponent implements OnInit
   title = 'guajiritos-weather';
   weatherInterface!: Weather;
   show: boolean = false;
+  showWeatherDataComponent: boolean = false;
 
   latitud: string ='';
   longitud: string = '';

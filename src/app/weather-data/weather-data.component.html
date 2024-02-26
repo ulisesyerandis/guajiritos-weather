@@ -1,5 +1,6 @@
  <!-- coordinates -->
-<form (ngSubmit)="onCoordSubmit()">
+ <div class="container">
+    <form (ngSubmit)="onCoordSubmit()">
   <div>
     <label for="latitud">Latitud:</label>
     <input type="text" id="latitud" name="latitud" [(ngModel)]="latitud" required>
@@ -30,4 +31,6 @@
   </div>
   <button type="submit">Acept</button>
 </form>
+ </div>
+
 

@@ -1,26 +1,27 @@
-
-<div class="container">
-  <div class="form_container">
-    <form (ngSubmit)="onLocationByCitySubmit()">
-      <input type="text" placeholder="City" class="input-field" id="city_name" name="city_name" [(ngModel)]="city_name" required>
-      <button type="submit" class="search-button">.</button>
-    </form>
-  </div>
+<div class="main_container">
+   <div class="container">
+      <div class="form_container">
+        <form (ngSubmit)="onLocationByCitySubmit()">
+          <input type="text" placeholder="City" class="input-field" id="city_name" name="city_name" [(ngModel)]="city_name" required>
+          <button type="submit" class="search-button">.</button>
+        </form>
+      </div>
   
-  @if (show) 
-  {
-    <div class="weather_container">
-    <div class="img_container">
-      <img src="assets\img\sun.svg" alt="">
+     @if (show) 
+      {
+        <div class="weather_container">
+          <div class="img_container">
+            <img src="assets\img\sun.svg" alt="">
+          </div>
+          <div class="data_container">
+            <div class="value_data_container">{{ weatherInterface.name }}  -  {{ weatherInterface.sys.country }}</div>
+            <div class="value_data_container">{{ weatherInterface.main.temp.toFixed(1) }}°c</div>
+            <div class="value_data_container">Rel.Humidity: {{ weatherInterface.main.humidity }}%</div>
+          </div>
+        </div>
+      } 
     </div>
-    <div class="data_container">
-      <div class="value_data_container">{{ weatherInterface.name }}  -  {{ weatherInterface.sys.country }}</div>
-      <div class="value_data_container">{{ weatherInterface.main.temp.toFixed(1) }}°c</div>
-      <div class="value_data_container">{{ weatherInterface.main.humidity }}</div>
-      <div class="value_data_container"></div>
-    </div>
-  </div>
-  }
 </div>
+
 
 
